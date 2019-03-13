@@ -36,9 +36,10 @@
   // - 戻り値
   //   - 引数で受け取ったtodoをそのまま返す
   function validateTodo(todo) {
+    const todoIndex = todos.indexOf(todo);
     if (!todo) {
       throw "何も入力されていません";
-    } else if (todos.includes(todo)) {
+    } else if (todoIndex >= 0) {
       throw "同じ名前のタスクは既に作成されています";
     }
     return todo;
@@ -136,7 +137,7 @@
   //   - 無し
   function promiseTaskOfDeletingTodo(index) {
     Promise.resolve(index)
-      .then(deleteTodo(index))
+      .then(deleteTodo)
       .then(showTodos);
   }
 
